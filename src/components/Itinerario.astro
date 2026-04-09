@@ -1,0 +1,548 @@
+---
+// Itinerario.astro - Versión compacta con imágenes doradas
+---
+
+<section class="px-4 relative overflow-hidden py-6">
+  <div class="max-w-5xl mx-auto relative z-10">
+    <div class="max-w-3xl mx-auto relative">
+      <!-- 🍃 HOJA IZQUIERDA -->
+      <div
+        class="absolute left-0 top-1/2 -translate-y-1/2 w-12 pointer-events-none -ml-6 sm:-ml-6 md:-ml-6 z-20 hoja-izq"
+        id="hoja-itinerario-izq"
+      >
+        <img
+          src="/imagenes/FloresLaterales.webp"
+          alt="Hoja izquierda"
+          class="w-full h-auto object-contain"
+        />
+      </div>
+
+      <!-- 🍃 HOJA DERECHA -->
+      <div
+        class="absolute right-0 top-1/2 -translate-y-1/2 w-12 pointer-events-none -mr-6 sm:-mr-6 md:-mr-6 z-20 hoja-der"
+        id="hoja-itinerario-der"
+      >
+        <img
+          src="/imagenes/FloresLaterales.webp"
+          alt="Hoja derecha"
+          class="w-full h-auto object-contain transform -scale-x-100"
+        />
+      </div>
+
+      <!-- 🌸 FLORES DECORATIVAS -->
+      <div class="flex justify-center mb-4" id="flores-itinerario">
+        <img
+          src="/imagenes/SeparadorDos.webp"
+          alt="Flores decorativas"
+          class="w-32 md:w-32 lg:w-32 h-auto opacity-90"
+        />
+      </div>
+
+      <!-- TÍTULO -->
+      <div class="text-charm text-center mb-6 titulo-itinerario">
+        <h2
+          class="font-charm text-2xl md:text-2xl lg:text-2xl text-[#D4AF37] font-bold italic mb-4"
+        >
+          ITINERARIO
+        </h2>
+        <div class="flex items-center justify-center gap-3">
+          <div
+            class="w-16 h-[2px] bg-gradient-to-r from-transparent to-[#6B8E6B]"
+          >
+          </div>
+          <div class="w-2 h-2 rounded-full bg-[#6B8E6B]"></div>
+          <div
+            class="w-16 h-[2px] bg-gradient-to-l from-transparent to-[#6B8E6B]"
+          >
+          </div>
+        </div>
+      </div>
+
+      <!-- TIMELINE CONTAINER -->
+      <div class="relative px-4 md:px-8">
+        <!-- Línea vertical CENTRAL en verde -->
+        <div
+          class="absolute left-1/2 -translate-x-1/2 top-0 bottom-0 w-[3px] bg-gradient-to-b from-[#6B8E6B] via-[#8aad8a] to-[#6B8E6B] rounded-full shadow-sm linea-central"
+          id="linea-central"
+        >
+        </div>
+
+        <!-- EVENTOS DEL ITINERARIO -->
+        <div class="space-y-0" id="eventos-container">
+          <!-- CORAZÓN 0 -->
+          <div class="flex justify-center py-1">
+            <div
+              class="w-8 h-8 rounded-full bg-gradient-to-br from-[#6B8E6B] to-[#4a6b4a] flex items-center justify-center relative z-10 corazon-item shadow-md"
+            >
+              <svg
+                class="w-4 h-4 text-white"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+              >
+                <path
+                  d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"
+                ></path>
+              </svg>
+            </div>
+          </div>
+
+          <!-- EVENTO 0: Recepción -->
+          <div class="evento-item grid grid-cols-2 gap-4 md:gap-8 py-1">
+            <div
+              class="flex flex-col items-center justify-center px-2 md:px-4 text-center texto-izq"
+            >
+              <p
+                class="font-charm text-xl md:text-2xl lg:text-2xl text-[#6B8E6B] font-bold leading-tight"
+              >
+                Recepción
+              </p>
+              <p class="font-charm text-xl md:text-2xl text-[#D4AF37] mt-0.5">
+                19:30 p.m.
+              </p>
+            </div>
+            <div
+              class="flex flex-col items-center justify-center px-2 md:px-4 imagen-der"
+            >
+              <div
+                class="w-14 h-14 md:w-16 md:h-16 transform transition-transform duration-300 hover:scale-110"
+              >
+                <img
+                  src="/imagenes/rece.png"
+                  alt="Recepción"
+                  class="w-full h-full object-contain verde-filter"
+                />
+              </div>
+            </div>
+          </div>
+
+          <!-- CORAZÓN 1 -->
+          <div class="flex justify-center py-1">
+            <div
+              class="w-8 h-8 rounded-full bg-gradient-to-br from-[#6B8E6B] to-[#4a6b4a] flex items-center justify-center relative z-10 corazon-item shadow-md"
+            >
+              <svg
+                class="w-4 h-4 text-white"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+              >
+                <path
+                  d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"
+                ></path>
+              </svg>
+            </div>
+          </div>
+
+          <!-- EVENTO 1: Vals -->
+          <div class="evento-item grid grid-cols-2 gap-4 md:gap-8 py-1">
+            <div
+              class="flex flex-col items-center justify-center px-2 md:px-4 imagen-izq"
+            >
+              <div
+                class="w-14 h-14 md:w-16 md:h-16 transform transition-transform duration-300 hover:scale-110"
+              >
+                <img
+                  src="/iconos/Vals.webp"
+                  alt="Vals"
+                  class="w-full h-full object-contain verde-filter"
+                />
+              </div>
+            </div>
+            <div
+              class="flex flex-col items-center justify-center px-2 md:px-4 text-center texto-der"
+            >
+              <p
+                class="font-charm text-xl md:text-2xl lg:text-2xl text-[#6B8E6B] font-bold leading-tight"
+              >
+                Vals
+              </p>
+              <p class="font-charm text-xl md:text-2xl text-[#D4AF37] mt-0.5">
+                21:00 p.m.
+              </p>
+            </div>
+          </div>
+
+          <!-- CORAZÓN 2 -->
+          <div class="flex justify-center py-1">
+            <div
+              class="w-8 h-8 rounded-full bg-gradient-to-br from-[#6B8E6B] to-[#4a6b4a] flex items-center justify-center relative z-10 corazon-item shadow-md"
+            >
+              <svg
+                class="w-4 h-4 text-white"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+              >
+                <path
+                  d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"
+                ></path>
+              </svg>
+            </div>
+          </div>
+
+          <!-- EVENTO 2: Cena -->
+          <div class="evento-item grid grid-cols-2 gap-4 md:gap-8 py-1">
+            <div
+              class="flex flex-col items-center justify-center px-2 md:px-4 text-center texto-izq"
+            >
+              <p
+                class="font-charm text-xl md:text-2xl lg:text-2xl text-[#6B8E6B] font-bold leading-tight"
+              >
+                Cena
+              </p>
+              <p class="font-charm text-xl md:text-2xl text-[#D4AF37] mt-0.5">
+                22:00 p.m.
+              </p>
+            </div>
+            <div
+              class="flex flex-col items-center justify-center px-2 md:px-4 imagen-der"
+            >
+              <div
+                class="w-14 h-14 md:w-16 md:h-16 transform transition-transform duration-300 hover:scale-110"
+              >
+                <img
+                  src="/iconos/Cena.webp"
+                  alt="Cena"
+                  class="w-full h-full object-contain verde-filter"
+                />
+              </div>
+            </div>
+          </div>
+
+          <!-- CORAZÓN 3 -->
+          <div class="flex justify-center py-1">
+            <div
+              class="w-8 h-8 rounded-full bg-gradient-to-br from-[#6B8E6B] to-[#4a6b4a] flex items-center justify-center relative z-10 corazon-item shadow-md"
+            >
+              <svg
+                class="w-4 h-4 text-white"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+              >
+                <path
+                  d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"
+                ></path>
+              </svg>
+            </div>
+          </div>
+
+          <!-- EVENTO 3: Hora Loca -->
+          <div class="evento-item grid grid-cols-2 gap-4 md:gap-8 py-1">
+            <div
+              class="flex flex-col items-center justify-center px-2 md:px-4 imagen-izq"
+            >
+              <div
+                class="w-14 h-14 md:w-16 md:h-16 transform transition-transform duration-300 hover:scale-110"
+              >
+                <img
+                  src="/iconos/HoraLoca.webp"
+                  alt="Hora Loca"
+                  class="w-full h-full object-contain verde-filter"
+                />
+              </div>
+            </div>
+            <div
+              class="flex flex-col items-center justify-center px-2 md:px-4 text-center texto-der"
+            >
+              <p
+                class="font-charm text-xl md:text-2xl lg:text-2xl text-[#6B8E6B] font-bold leading-tight"
+              >
+                Hora Loca
+              </p>
+              <p class="font-charm text-xl md:text-2xl text-[#D4AF37] mt-0.5">
+                23:30 p.m.
+              </p>
+            </div>
+          </div>
+
+          <!-- CORAZÓN 4 -->
+          <div class="flex justify-center py-1">
+            <div
+              class="w-8 h-8 rounded-full bg-gradient-to-br from-[#6B8E6B] to-[#4a6b4a] flex items-center justify-center relative z-10 corazon-item shadow-md"
+            >
+              <svg
+                class="w-4 h-4 text-white"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+              >
+                <path
+                  d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"
+                ></path>
+              </svg>
+            </div>
+          </div>
+
+          <!-- EVENTO 4: Cierre de la Fiesta -->
+          <div class="evento-item grid grid-cols-2 gap-4 md:gap-8 py-1">
+            <div
+              class="flex flex-col items-center justify-center px-2 md:px-4 text-center texto-izq"
+            >
+              <p
+                class="font-charm text-xl md:text-2xl lg:text-2xl text-[#6B8E6B] font-bold leading-tight"
+              >
+                Cierre de la Fiesta
+              </p>
+              <p class="font-charm text-xl md:text-2xl text-[#D4AF37] mt-0.5">
+                3:00 a.m.
+              </p>
+            </div>
+            <div
+              class="flex flex-col items-center justify-center px-2 md:px-4 imagen-der"
+            >
+              <div
+                class="w-14 h-14 md:w-16 md:h-16 transform transition-transform duration-300 hover:scale-110"
+              >
+                <img
+                  src="/iconos/despedida.png"
+                  alt="Cierre de la Fiesta"
+                  class="w-full h-full object-contain verde-filter"
+                />
+              </div>
+            </div>
+          </div>
+
+          <!-- CORAZÓN FINAL -->
+          <div class="flex justify-center py-1">
+            <div
+              class="w-8 h-8 rounded-full bg-gradient-to-br from-[#6B8E6B] to-[#4a6b4a] flex items-center justify-center relative z-10 corazon-item shadow-md"
+            >
+              <svg
+                class="w-4 h-4 text-white"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+              >
+                <path
+                  d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"
+                ></path>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  import { gsap } from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const initItinerario = () => {
+    gsap.set("#flores-itinerario", { opacity: 0, y: -30, scale: 0.8 });
+    gsap.set(".titulo-itinerario", { opacity: 0, y: -30 });
+    gsap.set(".linea-central", { opacity: 0, scaleY: 0 });
+    gsap.set(".corazon-item", { opacity: 0, scale: 0 });
+    gsap.set(".evento-item", { opacity: 0 });
+    gsap.set("#hoja-itinerario-izq", { opacity: 0, x: -30 });
+    gsap.set("#hoja-itinerario-der", { opacity: 0, x: 30 });
+    gsap.set(".imagen-izq", { x: -60 });
+    gsap.set(".texto-izq", { x: -60 });
+    gsap.set(".imagen-der", { x: 60 });
+    gsap.set(".texto-der", { x: 60 });
+
+    ScrollTrigger.create({
+      trigger: "#flores-itinerario",
+      start: "top 85%",
+      once: true,
+      onEnter: () => {
+        gsap.to("#flores-itinerario", {
+          opacity: 1,
+          y: 0,
+          scale: 1,
+          duration: 1.2,
+          ease: "back.out(1.5)",
+        });
+        gsap.to(".titulo-itinerario", {
+          opacity: 1,
+          y: 0,
+          duration: 1,
+          ease: "power2.out",
+          delay: 0.2,
+        });
+      },
+    });
+
+    ScrollTrigger.create({
+      trigger: "#eventos-container",
+      start: "top 80%",
+      end: "top 20%",
+      onEnter: () => {
+        const tl = gsap.timeline();
+
+        tl.to(
+          ".linea-central",
+          {
+            opacity: 1,
+            scaleY: 1,
+            duration: 1.5,
+            ease: "power2.out",
+            transformOrigin: "top center",
+          },
+          0,
+        )
+          .to(
+            ".corazon-item",
+            {
+              opacity: 1,
+              scale: 1,
+              duration: 0.8,
+              ease: "back.out(1.7)",
+            },
+            0,
+          )
+          .to(
+            ".evento-item",
+            {
+              opacity: 1,
+              duration: 1,
+              ease: "power3.out",
+            },
+            0,
+          )
+          .to(
+            "#hoja-itinerario-izq",
+            {
+              opacity: 1,
+              x: 0,
+              duration: 1.2,
+              ease: "power2.out",
+            },
+            0,
+          )
+          .to(
+            "#hoja-itinerario-der",
+            {
+              opacity: 1,
+              x: 0,
+              duration: 1.2,
+              ease: "power2.out",
+            },
+            0,
+          )
+          .to(
+            ".imagen-izq, .texto-izq",
+            {
+              x: 0,
+              duration: 1,
+              ease: "power3.out",
+            },
+            0,
+          )
+          .to(
+            ".imagen-der, .texto-der",
+            {
+              x: 0,
+              duration: 1,
+              ease: "power3.out",
+            },
+            0,
+          );
+
+        gsap.to(".corazon-item", {
+          scale: 1.08,
+          duration: 2,
+          ease: "sine.inOut",
+          yoyo: true,
+          repeat: -1,
+          delay: 1.5,
+        });
+
+        gsap.to("#hoja-itinerario-izq", {
+          y: -5,
+          rotation: -2,
+          duration: 2.5,
+          ease: "sine.inOut",
+          yoyo: true,
+          repeat: -1,
+          delay: 1.5,
+        });
+
+        gsap.to("#hoja-itinerario-der", {
+          y: -5,
+          rotation: 2,
+          duration: 2.5,
+          ease: "sine.inOut",
+          yoyo: true,
+          repeat: -1,
+          delay: 1.7,
+        });
+      },
+
+      onLeaveBack: () => {
+        const tl = gsap.timeline();
+
+        tl.to(
+          ".linea-central, .corazon-item, .evento-item",
+          {
+            opacity: 0,
+            duration: 0.4,
+            ease: "power2.in",
+          },
+          0,
+        )
+          .to(".linea-central", { scaleY: 0, duration: 0.4 }, 0)
+          .to(".corazon-item", { scale: 0, duration: 0.4 }, 0)
+          .to("#hoja-itinerario-izq", { opacity: 0, x: -30, duration: 0.4 }, 0)
+          .to("#hoja-itinerario-der", { opacity: 0, x: 30, duration: 0.4 }, 0)
+          .to(".imagen-izq, .texto-izq", { x: -60, duration: 0.4 }, 0)
+          .to(".imagen-der, .texto-der", { x: 60, duration: 0.4 }, 0);
+      },
+    });
+  };
+
+  if (typeof window !== "undefined") {
+    document.addEventListener("DOMContentLoaded", initItinerario);
+    document.addEventListener("astro:page-load", initItinerario);
+  }
+</script>
+
+<style>
+  .font-charm {
+    font-family: "Charm", cursive;
+  }
+
+  .evento-item p {
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .evento-item:hover p:first-of-type {
+    color: #4a6b4a;
+    transform: scale(1.08);
+    text-shadow: 0 2px 8px rgba(107, 142, 107, 0.3);
+  }
+
+  .corazon-item {
+    filter: drop-shadow(0 4px 12px rgba(107, 142, 107, 0.5));
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .corazon-item:hover {
+    transform: scale(1.2) rotate(10deg);
+    filter: drop-shadow(0 8px 20px rgba(107, 142, 107, 0.7));
+  }
+
+  /* ⭐ FILTRO VERDE PARA LAS IMÁGENES */
+  .verde-filter {
+    filter: brightness(0) saturate(100%) invert(52%) sepia(25%) saturate(500%)
+      hue-rotate(90deg) brightness(90%) contrast(90%)
+      drop-shadow(0 4px 10px rgba(107, 142, 107, 0.2));
+    transition:
+      filter 0.3s ease,
+      transform 0.3s ease;
+  }
+
+  .verde-filter:hover {
+    filter: brightness(0) saturate(100%) invert(52%) sepia(25%) saturate(500%)
+      hue-rotate(90deg) brightness(90%) contrast(90%)
+      drop-shadow(0 6px 16px rgba(107, 142, 107, 0.4));
+  }
+
+  .linea-central {
+    box-shadow: 0 0 15px rgba(107, 142, 107, 0.3);
+  }
+
+  .hoja-izq,
+  .hoja-der {
+    will-change: transform;
+  }
+</style>

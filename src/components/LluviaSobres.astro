@@ -1,0 +1,199 @@
+---
+// LluviaSobres.astro
+// Temática La Princesa y el Sapo
+// Lluvia de sobres con QR grande y visible
+---
+
+<section class="relative py-8 px-4 overflow-hidden">
+  <div class="max-w-4xl mx-auto text-center relative z-10">
+    <div class="flex justify-center mb-6" id="separador-lluvia">
+      <img
+        src="/imagenes/SeparadorDos.webp"
+        alt="Separador decorativo"
+        class="w-40 md:w-40 lg:w-40 h-auto object-contain"
+      />
+    </div>
+
+    <div class="mb-6" id="titulo-lluvia">
+      <h2
+        class="font-charm text-2xl md:text-2xl lg:text-2xl text-[#D4AF37] font-bold tracking-wide mb-3"
+      >
+        LLUVIA DE SOBRES
+      </h2>
+      <p
+        class="font-charm text-xl md:text-xl text-[#6B8E6B] max-w-2xl mx-auto px-4"
+      >
+        Tu presencia es nuestro mejor regalo, pero si deseas obsequiar algo más,
+        aquí te dejamos nuestra opción
+      </p>
+    </div>
+
+    <div
+      class="flex justify-center max-w-lg mx-auto mb-8 px-4"
+      id="contenedor-qr"
+    >
+      <div
+        class="bg-white/90 backdrop-blur-sm rounded-2xl shadow-xl border-4 border-[#D4AF37] md:p-10 w-full"
+        id="qr-card-1"
+      >
+        <!-- QR CODE - TAMAÑO COMPLETO -->
+        <div class="bg-white rounded-xl m-4 flex items-center justify-center">
+          <img
+            src="/imagenes/QR.webp"
+            alt="QR Banco Nacional"
+            class="w-full h-auto max-w-sm object-contain"
+          />
+        </div>
+
+        <!-- INFORMACIÓN DE CUENTA -->
+        <!-- <div class="mt-4">
+          <p class="font-charm text-lg md:text-xl text-[#6B8E6B] font-semibold">
+            Cuenta: 1234-5678-9012-3456
+          </p>
+        </div> -->
+      </div>
+    </div>
+
+    <div class="mb-4" id="nota-lluvia">
+      <p class="font-charm text-xl md:text-xl text-[#D4AF37]">
+        También puedes llevar tu sobre el día del evento
+      </p>
+    </div>
+  </div>
+</section>
+
+<script>
+  import { gsap } from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  if (typeof window !== "undefined") {
+    document.addEventListener("DOMContentLoaded", () => {
+      console.log("💌 Iniciando animaciones de Lluvia de Sobres...");
+
+      // 🎯 ESTADO INICIAL
+      gsap.set("#separador-lluvia", { opacity: 0, scale: 0.8 });
+      gsap.set("#titulo-lluvia", { opacity: 0, y: 30 });
+      gsap.set("#contenedor-qr", { opacity: 0, y: 40 });
+      gsap.set("#qr-card-1", { scale: 0.8 });
+      gsap.set("#nota-lluvia", { opacity: 0, y: 20 });
+
+      // 📍 SCROLLTRIGGER
+      ScrollTrigger.create({
+        trigger: "#separador-lluvia",
+        start: "top 80%",
+        end: "bottom 20%",
+
+        onEnter: () => {
+          console.log("✨ Sección de sobres apareciendo...");
+          animarEntrada();
+        },
+
+        onLeaveBack: () => {
+          console.log("👋 Ocultando sección de sobres...");
+          animarSalida();
+        },
+      });
+
+      // 🎬 ANIMACIÓN DE ENTRADA
+      function animarEntrada() {
+        const tl = gsap.timeline();
+        const duration = 0.8;
+
+        tl.to(
+          "#separador-lluvia",
+          {
+            opacity: 1,
+            scale: 1,
+            duration: duration,
+            ease: "back.out(1.5)",
+          },
+          0,
+        )
+          .to(
+            "#titulo-lluvia",
+            {
+              opacity: 1,
+              y: 0,
+              duration: duration,
+              ease: "power3.out",
+            },
+            0,
+          )
+          .to(
+            "#contenedor-qr",
+            {
+              opacity: 1,
+              y: 0,
+              duration: duration,
+              ease: "power3.out",
+            },
+            0,
+          )
+          .to(
+            "#qr-card-1",
+            {
+              scale: 1,
+              duration: duration,
+              ease: "elastic.out(1, 0.5)",
+            },
+            0,
+          )
+          .to(
+            "#nota-lluvia",
+            {
+              opacity: 1,
+              y: 0,
+              duration: duration,
+              ease: "power2.out",
+            },
+            0,
+          );
+      }
+
+      // 🔙 ANIMACIÓN DE SALIDA
+      function animarSalida() {
+        const tl = gsap.timeline();
+
+        tl.to(
+          "#nota-lluvia, #contenedor-qr, #titulo-lluvia, #separador-lluvia",
+          {
+            opacity: 0,
+            duration: 0.5,
+            ease: "power2.in",
+          },
+          0,
+        ).to(
+          "#qr-card-1",
+          {
+            scale: 0.8,
+            duration: 0.5,
+            ease: "power2.in",
+          },
+          0,
+        );
+      }
+
+      console.log("💌 Lluvia de Sobres inicializada");
+    });
+  }
+</script>
+
+<style>
+  .font-charm {
+    font-family: "Charm", cursive;
+  }
+
+  /* Efecto hover en la tarjeta QR */
+  #qr-card-1 {
+    transition:
+      transform 0.3s ease,
+      box-shadow 0.3s ease;
+  }
+
+  #qr-card-1:hover {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 20px 40px rgba(212, 175, 55, 0.4);
+  }
+</style>

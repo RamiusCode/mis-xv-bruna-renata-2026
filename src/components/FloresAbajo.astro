@@ -1,0 +1,248 @@
+---
+// CierreInvitacion.astro
+---
+
+<section
+  class="relative text-black w-full overflow-hidden flex items-center justify-center pt-0 pb-0"
+>
+  <div class="relative w-full max-w-[480px] mx-auto z-10">
+    <div class="relative w-full z-10" id="contenedor-flores-silueta">
+      <div
+        class="relative w-full flex justify-between items-end"
+        id="contenedor-flex-flores"
+      >
+        <!-- FLORES IZQUIERDA -->
+        <div id="flores-izq-inferiores" class="w-36 sm:w-44 flex-shrink-0">
+          <img
+            src="/imagenes/FloresIzquierdaAbajo.webp"
+            alt="Flores decorativas superiores izquierda"
+            class="w-full h-auto object-contain"
+          />
+        </div>
+
+        <!-- MARIPOSAS -->
+        <div id="mariposa-cierre-1" class="absolute left-[20%] top-[10%] z-20">
+          <img
+            src="/imagenes/MariposaVerde.webp"
+            alt="Mariposa"
+            class="w-10 h-10 object-contain mariposa-volando-cierre"
+          />
+        </div>
+        <div id="mariposa-cierre-2" class="absolute left-[5%] top-[35%] z-20">
+          <img
+            src="/imagenes/MariposaVerde.webp"
+            alt="Mariposa"
+            class="w-8 h-8 object-contain mariposa-volando-cierre"
+          />
+        </div>
+        <div id="mariposa-cierre-3" class="absolute right-[20%] top-[15%] z-20">
+          <img
+            src="/imagenes/MariposaVerde.webp"
+            alt="Mariposa"
+            class="w-12 h-12 object-contain mariposa-volando-cierre transform scale-x-[-1]"
+          />
+        </div>
+        <div id="mariposa-cierre-4" class="absolute right-[10%] top-[40%] z-20">
+          <img
+            src="/imagenes/MariposaVerde.webp"
+            alt="Mariposa"
+            class="w-9 h-9 object-contain mariposa-volando-cierre transform scale-x-[-1]"
+          />
+        </div>
+
+        <!-- SILUETA CENTRAL - ahora posicionada abajo -->
+        <div class="absolute left-1/2 bottom-0 z-20" id="silueta-central">
+          <img
+            src="/imagenes/xv.png"
+            alt="Silueta de Quinceañera"
+            class="w-48 sm:w-56 md:w-64 h-auto object-contain mx-auto drop-shadow-lg"
+          />
+        </div>
+
+        <!-- FLORES DERECHA -->
+        <div id="flores-der-inferiores" class="w-36 sm:w-44 flex-shrink-0">
+          <img
+            src="/imagenes/FloresDerechaAbajo.webp"
+            alt="Flores decorativas superiores derecha"
+            class="w-full h-auto object-contain"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  import { gsap } from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const MARIPOSAS_CIERRE = [
+    "#mariposa-cierre-1",
+    "#mariposa-cierre-2",
+    "#mariposa-cierre-3",
+    "#mariposa-cierre-4",
+  ];
+
+  const animarMariposasCierre = (delayInicio) => {
+    const isMobile = window.innerWidth < 640;
+    const stagger = 0.15;
+    const duration = 1.0;
+
+    MARIPOSAS_CIERRE.forEach((mariposa, index) => {
+      gsap.fromTo(
+        mariposa,
+        {
+          opacity: 0,
+          scale: 0,
+          x: index % 2 === 0 ? -50 : 50,
+          y: -50,
+          rotation: index % 2 === 0 ? -180 : 180,
+        },
+        {
+          opacity: 1,
+          scale: 1,
+          x: 0,
+          y: 0,
+          rotation: 0,
+          duration: duration,
+          ease: "back.out(1.5)",
+          delay: delayInicio + index * stagger,
+          onComplete: () => {
+            gsap.set(mariposa, { scale: 1 });
+          },
+        },
+      );
+
+      const timeline = gsap.timeline({
+        repeat: -1,
+        delay: delayInicio + 2 + index * 0.3,
+      });
+
+      timeline
+        .to(mariposa, {
+          x: isMobile ? "random(-15, 15)" : "random(-25, 25)",
+          y: isMobile ? "random(-12, 12)" : "random(-20, 20)",
+          rotation: "random(-15, 15)",
+          duration: "random(2.5, 3.5)",
+          ease: "sine.inOut",
+        })
+        .to(mariposa, {
+          x: isMobile ? "random(-15, 15)" : "random(-25, 25)",
+          y: isMobile ? "random(-12, 12)" : "random(-20, 20)",
+          rotation: "random(-15, 15)",
+          duration: "random(2.5, 3.5)",
+          ease: "sine.inOut",
+        });
+
+      gsap.to(`${mariposa} img`, {
+        scaleX: 0.9,
+        duration: 0.15,
+        ease: "sine.inOut",
+        yoyo: true,
+        repeat: -1,
+        delay: delayInicio + 2 + index * 0.2,
+      });
+    });
+  };
+
+  document.addEventListener("DOMContentLoaded", () => {
+    gsap.config({ force3D: true, nullTargetWarn: false });
+
+    gsap.set(["#flores-izq-inferiores", "#flores-der-inferiores"], {
+      opacity: 0,
+      y: 20,
+    });
+    gsap.set("#silueta-central", { opacity: 0, scale: 0.8, y: 30 });
+    gsap.set(MARIPOSAS_CIERRE, { opacity: 0, scale: 0 });
+
+    ScrollTrigger.create({
+      trigger: "#contenedor-flores-silueta",
+      start: "top 85%",
+      onEnter: () => {
+        const tl = gsap.timeline({ delay: 0.3 });
+
+        tl.fromTo(
+          ["#flores-izq-inferiores", "#flores-der-inferiores"],
+          { opacity: 0, y: 20 },
+          { opacity: 1, y: 0, duration: 1, ease: "power2.out" },
+          0,
+        );
+
+        // Silueta sube desde abajo
+        tl.fromTo(
+          "#silueta-central",
+          { opacity: 0, scale: 0.8, y: 30 },
+          { opacity: 1, scale: 1, y: 0, duration: 1.2, ease: "elastic.out(1, 0.5)" },
+          0.5,
+        );
+
+        animarMariposasCierre(1.0);
+
+        // Flotado suave
+        gsap.to("#silueta-central", {
+          y: -6,
+          duration: 3,
+          ease: "sine.inOut",
+          yoyo: true,
+          repeat: -1,
+          delay: 2,
+        });
+      },
+      onLeaveBack: () => {
+        gsap.set(["#flores-izq-inferiores", "#flores-der-inferiores"], {
+          opacity: 0,
+          y: 20,
+        });
+        gsap.set("#silueta-central", { opacity: 0, scale: 0.8, y: 30 });
+        gsap.set(MARIPOSAS_CIERRE, { opacity: 0, scale: 0 });
+      },
+    });
+  });
+</script>
+
+<style>
+  section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    height: auto !important;
+    min-height: 0 !important;
+  }
+
+  #flores-izq-inferiores,
+  #flores-der-inferiores,
+  #silueta-central {
+    will-change: transform, opacity;
+  }
+
+  .mariposa-volando-cierre {
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+    transition: filter 0.3s ease;
+    will-change: transform, opacity;
+  }
+
+  #contenedor-flex-flores {
+    align-items: flex-end; /* flores y silueta alineadas abajo */
+    position: relative;
+    min-height: 260px; /* más altura para que la silueta grande quepa */
+  }
+
+  /* Silueta centrada y pegada al fondo */
+  #silueta-central {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  #silueta-central img {
+    max-height: 100%;
+    max-width: 100%;
+    display: block;
+  }
+</style>

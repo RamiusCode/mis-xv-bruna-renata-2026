@@ -1,0 +1,297 @@
+---
+// Componente de Dedicatoria - Temática La Princesa y el Sapo
+// Para invitación de 15 años
+// Solo Tailwind - Sin CSS innecesario
+---
+
+<!-- DEDICATORIA CON PERGAMINO -->
+<section
+  class="w-full flex flex-col items-center justify-center py-6 px-4 relative overflow-hidden"
+  id="dedicatoria-section"
+  style="background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgba(98, 106, 84, 0.02) 50%, rgba(255, 255, 255, 0) 100%);"
+>
+  <!-- Separador Dorado Superior -->
+  <div
+    class="w-64 sm:w-40 md:w-96 lg:w-[28rem] xl:w-[32rem] mb-6 z-20"
+    id="separador-dorado"
+  >
+    <img
+      src="/imagenes/SeparadorDorado.webp"
+      alt="Separador decorativo dorado"
+      class="w-full h-auto object-contain opacity-0"
+    />
+  </div>
+
+  <!-- Container principal -->
+  <div
+    class="relative w-full max-w-sm lg:max-w-sm xl:max-w-sm 2xl:max-w-sm mx-auto"
+  >
+    <!-- Pergamino con texto -->
+    <div
+      class="relative z-10"
+      id="pergamino-container"
+      style="perspective: 1000px;"
+    >
+      <!-- Imagen del pergamino de fondo -->
+      <div class="relative opacity-0 drop-shadow-xl" id="pergamino-bg">
+        <img
+          src="/imagenes/perga.png"
+          alt="Pergamino"
+          class="w-full h-auto object-contain"
+        />
+
+        <!-- Texto sobre el pergamino -->
+        <div
+          class="absolute inset-0 flex items-center justify-center px-8 sm:px-12 md:px-16 lg:px-20 xl:px-24"
+        >
+          <div class="text-center w-full py-8" id="pergamino-text">
+            <p
+              class="font-charm font-bold text-xl sm:text-xl md:text-xl lg:text-xl xl:text-xl 2xl:text-xl text-[#6B4C11] leading-relaxed opacity-0"
+              style="text-shadow: 0 2px 4px rgba(139, 105, 20, 0.3);"
+            >
+              La princesa de este cuento<br />
+              abre las puertas de su castillo.<br />
+
+              Con la bendición de Dios<br />
+              y el amor de sus padres<br />
+
+              <!-- Nombres en dorado destacado -->
+              <span
+                class="font-black text-2xl sm:text-3xl md:text-3xl lg:text-4xl block my-2"
+                style="
+                  color: #B8860B;
+                  text-shadow: 0 0 10px rgba(255, 215, 0, 0.5), 0 2px 4px rgba(139, 105, 20, 0.5);
+                  letter-spacing: 0.03em;
+                "
+              >
+                Miguel Ángel y Lourdes
+              </span>
+
+              te invitamos a ser parte<br />
+              de una noche llena de<br />
+              magia e ilusión.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Cocodrilo (esquina inferior izquierda) -->
+    <div
+      class="absolute -bottom-8 -left-4 sm:-left-8 md:-left-12 lg:-left-16 xl:-left-20 w-20 sm:w-20 md:w-20 lg:w-20 xl:w-20 2xl:w-20 z-20 opacity-0 drop-shadow-md"
+      id="cocodrilo"
+    >
+      <img
+        src="/imagenes/Cocodrilo.webp"
+        alt="Cocodrilo Louis"
+        class="w-full h-auto object-contain"
+      />
+    </div>
+
+    <!-- Mosca (lado derecho) -->
+    <div
+      class="absolute top-1/3 -right-4 sm:-right-6 md:-right-8 lg:-right-10 xl:-right-12 w-16 sm:w-16 md:w-16 lg:w-16 xl:w-16 2xl:w-16 z-20 opacity-0 drop-shadow-md"
+      id="mosca"
+    >
+      <img
+        src="/imagenes/Mosca.webp"
+        alt="Ray la luciérnaga"
+        class="w-full h-auto object-contain"
+      />
+    </div>
+  </div>
+</section>
+
+<!-- SCRIPTS CON GSAP -->
+<script>
+  import { gsap } from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  document.addEventListener("DOMContentLoaded", () => {
+    console.log("📜 Iniciando animación de dedicatoria...");
+
+    let hasAnimated = false;
+    let continuousAnimations = null;
+
+    // Configurar estado inicial
+    gsap.set("#separador-dorado img", { opacity: 0, y: -50, scale: 0.8 });
+    gsap.set("#pergamino-bg", { opacity: 0, scale: 0.85, y: 30 });
+    gsap.set("#pergamino-text p", { opacity: 0, y: 20 });
+    gsap.set("#cocodrilo", { opacity: 0, x: -80, y: 20 });
+    gsap.set("#mosca", { opacity: 0, x: 80, y: -30 });
+
+    // ScrollTrigger para la animación
+    ScrollTrigger.create({
+      trigger: "#dedicatoria-section",
+      start: "top 75%",
+      end: "bottom 25%",
+      onEnter: () => {
+        console.log("📜 ✨ Dedicatoria apareciendo...");
+        if (!hasAnimated) {
+          animateDedicatoria();
+          hasAnimated = true;
+        }
+      },
+      onLeave: () => {
+        console.log("📜 👇 Usuario salió hacia abajo");
+      },
+      onEnterBack: () => {
+        console.log("📜 👆 Usuario regresó a dedicatoria");
+      },
+      onLeaveBack: () => {
+        console.log("📜 ⬆️ Usuario salió hacia arriba - ocultando...");
+        hideAndReset();
+      },
+    });
+
+    // Animación de entrada - TODAS AL MISMO TIEMPO
+    function animateDedicatoria() {
+      const tl = gsap.timeline();
+
+      tl.to(
+        "#separador-dorado img",
+        {
+          opacity: 1,
+          y: 0,
+          scale: 1,
+          duration: 1.2,
+          ease: "power2.out",
+        },
+        0,
+      )
+        .to(
+          "#cocodrilo",
+          {
+            opacity: 1,
+            x: 0,
+            y: 0,
+            duration: 1.2,
+            ease: "power2.out",
+          },
+          0,
+        )
+        .to(
+          "#mosca",
+          {
+            opacity: 1,
+            x: 0,
+            y: 0,
+            duration: 1.2,
+            ease: "power2.out",
+          },
+          0,
+        )
+        .to(
+          "#pergamino-bg",
+          {
+            opacity: 1,
+            scale: 1,
+            y: 0,
+            duration: 1.2,
+            ease: "power2.out",
+          },
+          0,
+        )
+        .to(
+          "#pergamino-text p",
+          {
+            opacity: 1,
+            y: 0,
+            duration: 1.2,
+            ease: "power2.out",
+          },
+          0.3,
+        );
+
+      tl.call(() => {
+        startCharacterAnimations();
+      });
+    }
+
+    // Ocultar y resetear cuando sube el scroll
+    function hideAndReset() {
+      if (continuousAnimations) {
+        continuousAnimations.kill();
+      }
+
+      const tlOut = gsap.timeline({
+        onComplete: () => {
+          gsap.set("#separador-dorado img", { opacity: 0, y: -50, scale: 0.8 });
+          gsap.set("#pergamino-bg", { opacity: 0, scale: 0.85, y: 30 });
+          gsap.set("#pergamino-text p", { opacity: 0, y: 20 });
+          gsap.set("#cocodrilo", { opacity: 0, x: -80, y: 20 });
+          gsap.set("#mosca", { opacity: 0, x: 80, y: -30 });
+          hasAnimated = false;
+        },
+      });
+
+      tlOut.to(
+        "#separador-dorado img, #pergamino-bg, #pergamino-text p, #cocodrilo, #mosca",
+        {
+          opacity: 0,
+          duration: 0.5,
+          ease: "power2.in",
+        },
+      );
+    }
+
+    // Animaciones continuas - SOLO mosca y cocodrilo, SIN pergamino
+    function startCharacterAnimations() {
+      continuousAnimations = gsap.timeline();
+
+      // Mosca flota suavemente
+      continuousAnimations.to(
+        "#mosca",
+        {
+          y: -10,
+          duration: 3,
+          ease: "sine.inOut",
+          repeat: -1,
+          yoyo: true,
+        },
+        0,
+      );
+
+      continuousAnimations.to(
+        "#mosca",
+        {
+          x: 5,
+          duration: 2.5,
+          ease: "sine.inOut",
+          repeat: -1,
+          yoyo: true,
+        },
+        0,
+      );
+
+      continuousAnimations.to(
+        "#mosca",
+        {
+          rotation: 5,
+          duration: 2.8,
+          ease: "sine.inOut",
+          repeat: -1,
+          yoyo: true,
+        },
+        0,
+      );
+
+      // Cocodrilo respira suavemente
+      continuousAnimations.to(
+        "#cocodrilo",
+        {
+          scale: 1.02,
+          duration: 3.5,
+          ease: "sine.inOut",
+          repeat: -1,
+          yoyo: true,
+        },
+        0,
+      );
+
+      // ❌ ELIMINADO: animación de scale del pergamino-bg que movía el texto
+    }
+  });
+</script>
